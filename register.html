@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<head>
+  <style>
+    .registeration
+    {
+        min-height: 550px;
+        
+        
+    }
+    .logo{
+        min-height: 550px;
+    }
+    .S{
+        min-height:435px;
+        box-shadow:0px 0px 5px 3px grey,
+        0px 0px 5px 3px rgba(255,255,255,0.3);
+    }
+    .register{
+        box-shadow:0px 0px 5px 3px grey,
+        0px 0px 5px 3px rgba(255,255,255,0.3);
+    }
+    body{
+        background-color: rgb(71, 248, 177);
+      }
+      img{
+        padding-right:50px;
+        height:300px;
+      }
+
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 bg-dark logo text-light pt-5 " >
+        <div class="p-5 S ">
+              <img src="{% static 'images/logo.png' %}">
+        </div>
+
+    </div>
+
+
+     <div class="col-md-8 bg-light registeration p-5 ">
+                <div class="bg-light p-5 register">
+      <form action="{% url 'register' %}" method="POST">
+        {% csrf_token%}
+                    <p class="fs-4 text-center"><b>Please fill in this form to create an account</b></p>
+                    <div class="input-group">
+                        <i class="input-group-text mb-1" >First Name</i>
+                        <input type="text" class="form-control mb-1" placeholder="Enter your first name" required name="first_name">
+                    </div>
+                    <div class="input-group">
+                        <i class="input-group-text mb-1" >Last Name</i>
+                        <input type="text" class="form-control mb-1" placeholder="Enter your last name" name="last_name">
+                    </div>
+                    <div class="input-group">
+                        <i class="input-group-text mb-1">E-mail</i>
+                        <input type="text" class="form-control mb-1" placeholder="Enter your email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="input-group-text mb-1">Password</i>
+                        <input type="password" required class="form-control mb-1" name="password1"  placeholder="Create a password">
+                    </div>
+                    <div class="input-group">
+                        <i class="input-group-text mb-1">Confirm Password</i>
+                        <input type="password" required class="form-control mb-1" name="password2" placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn btn-outline-danger form-control">Submit</button>
+        <center>
+          {% if error %}
+          <p style="color: red;">{{ error }}</p>
+          {% endif %}
+        </center>
+        
+      </form>
+      
+      <div class="signup text-center mt-2">
+        <span class="signup">Already have an account?
+          <a href="{% url 'login' %}"><label for="check">Signin</label></a>
+        </span>
+      </div>
+      </div>
+     </div>
+   </div>
+</div>
+</body>
+</html>
